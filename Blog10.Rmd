@@ -1,3 +1,10 @@
+---
+author: "Matt Kavanaugh
+title: "Ethical Web Scraping"
+date: "2023-04-06"
+categories: "Web scraping etiquette"
+---
+
 1. What are your main three takeaways for ethical web scraping? - Give examples, or cite your sources.
 
 For this blog assignment, I read several articles on the process and ethics
