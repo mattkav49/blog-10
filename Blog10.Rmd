@@ -1,0 +1,95 @@
+1. What are your main three takeaways for ethical web scraping? - Give examples, or cite your sources.
+
+For this blog assignment, I read several articles on the process and ethics
+of web scraping. During this process, I encountered numerous takeaways that 
+could potentially be very helpful for someone who is new to the process of
+web scraping. From the sources I have viewed, the three main ones are as follows:
+
+  1. Web scraping is a part of everyday internet use. In fact, the Internet 
+  exists due to the fact that data scientists and software developers are 
+  constantly scraping webpages for new information. It is a critical tool that,
+  if used properly, can enable the growth and development of a variety of ideas
+  and even fuel economic growth.
+  
+  2. One of the most important things to remember about web scraping is that
+  it must be performed for the right reasons. It is important to know the reason
+  you are scraping and exactly what data you must acquire, according to
+  Jami @ Empirical. Unethical scraping
+  occurs when an individual or party acquires information to either be duplicated
+  or used in manner that harms the owner of the site being scraped. This can lead
+  to consequences, including legal ones, in addition to negative impacts on the
+  site being scraped. For example, scraping the website of a small business that
+  is not used to a great deal of traffic could become overwhelmed or even crash,
+  which would negatively impact the state of that business.
+  
+  3. The most important thing to remember when it comes to web scraping is that
+  one must be respectful of others' property and rights. According to Theo Vasilis
+  from Aplify, it is important for scrapers to respect the creative rights of the webpge developers, and it is also important for page creators to respect the rights of their
+  scrapers, as long as they are using the information in a fair and ethical manner. It is best that a scraper
+  identify themselves to the website owner and state the purpose of their scraping.
+  Even if not, one should make sure not to scrape excessively or unnecessarily
+  If this is done, it can disrupt site traffic and make it less accessible for
+  other users, according to James Densmore.
+  
+  Aplify blog: https://blog.apify.com/what-is-ethical-web-scraping-and-how-do-you-do-it/#:~:text=How%20do%20you%20ethically%20scrape%20a%20website%3F%201,5%205.%20Don%E2%80%99t%20block%20scrapers%20without%20good%20reason
+  
+  
+
+2. What is a ROBOTS.TXT file? Identify one instance and explain what it allows/prevents.
+
+A ROBOTS.TXT file provides guidance to robots and other automated web crawlers
+on how they should and should not scrape and use information from webpages. They are also
+known as the Robots Exclusion Standard. Within a certain webpage or domain, it
+tells the bots exactly which content is intended to be accessible to bots. The bot
+must check the ROBOTS.TXT file before proceeding to the site and pursuing the
+task at hand. For example, below is LinkedIn's Robot.txt file:
+https://www.linkedin.com/robots.txt
+It disallows crawling on most pages regarding job postings as well as personal
+profile pages, among many other portions of the website. Since it is a popular
+and heavily trafficked domain that contains a lot of personal information,
+scraping in general is quite limited.
+
+
+
+3. Identify a website that you would like to scrape (or one an example from class) and implement a scrape using the polite package.
+
+A website that I am interested in scraping is:
+https://www.dnr.state.mn.us/climate/journal/top_twenty_snowfalls.html
+which provides a list of the top 20 snowfalls of all time in the Twin Cities
+of Minnesota.
+
+```{r}
+#Implement a scrape on this webpage to find the top twenty snowfalls of all time
+#in the Twin Cities, MN:
+
+library(rvest)
+library(polite)
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(stringr)
+library(glue)
+library(rlang)
+
+snow_url <- "https://www.dnr.state.mn.us/climate/journal/top_twenty_snowfalls.html"
+
+session <- bow(snow_url,
+               user_agent = "Matt Kavanaugh's STAT 585 Example Webscrape")
+
+session
+
+polite::scrape(session)
+
+tc_topsnowfalls <- scrape(session) %>%
+  html_nodes("pre") %>%
+  html_text()
+  
+topsnowfalls <- tc_topsnowfalls 
+ 
+
+```
+
+
+
+
+
